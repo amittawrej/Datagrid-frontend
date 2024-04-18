@@ -7,6 +7,7 @@ import DisplayFamilyDetails from './DisplayFamilyDetails';
 const FamilyHeadList = () => {
   const [familyHeads, setFamilyHeads] = useState([]);
 const [familyDetails, setFamilyDetails] = useState([]);
+const[memberDetails,setMemberDetails]=useState([]);
   useEffect(() => {
     const fetchFamilyHeads = async () => {
       try {
@@ -28,9 +29,13 @@ const [familyDetails, setFamilyDetails] = useState([]);
       const data =JSON.stringify(response.data.family, null, 2);
 console.log(data);  
 const parsedData = JSON.parse(data);
+console.log(parsedData);
 const dataArray = Array.isArray(parsedData) ? parsedData : [parsedData];
-console.log(dataArray[0].headOfFamily);
-setFamilyDetails(dataArray[0].headOfFamily);    
+console.log(dataArray)
+console.log(dataArray[0].familyMembers);
+setMemberDetails(dataArray[0].familyMembers);
+setFamilyDetails(dataArray[0].headOfFamily);
+console.log(dataArray[0].headOfFamily);    
     } catch (error) {
       console.error('Error fetching family details:', error);
     }
@@ -55,7 +60,7 @@ setFamilyDetails(dataArray[0].headOfFamily);
         ))}
       </ul>
 
-{<DisplayFamilyDetails familyDetails={familyDetails}/>}
+{<DisplayFamilyDetails familyDetails={familyDetails} memberDetails={memberDetails}/>}
   
       
 

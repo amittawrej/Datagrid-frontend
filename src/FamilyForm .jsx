@@ -24,7 +24,7 @@ const FamilyForm = () => {
       // Split the string into an array of hobbies
       setHeadOfFamily((prevState) => ({
         ...prevState,
-        [name]: value.split(",").map((hobby) => hobby.trim()),
+        [name]: value.split(",").map((hobby) => hobby.trim()),  //remove spaces
       }));
     } else {
       setHeadOfFamily((prevState) => ({
@@ -95,7 +95,9 @@ const addHobby = () => {
       console.error("Error:", error);
     }
   };
-
+const handleImage=()=>{
+  console.log('uploaded successfully')
+}
   return (
     <form onSubmit={handleSubmit} className="form">
      
@@ -273,6 +275,7 @@ const addHobby = () => {
           
             style={{ marginBottom: "10px" }}
           />
+          <button onClick={handleImage}>Upload</button>
         </div>
       ))}
       <button type="button" onClick={addFamilyMember}>
